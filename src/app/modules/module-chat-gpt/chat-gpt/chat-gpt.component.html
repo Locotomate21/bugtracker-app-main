@@ -1,0 +1,42 @@
+<h3 nz-typography>Chat GPT</h3>
+<p>This is a experimental integration with the OpenAI API and their models</p>
+
+<nz-row class="chat-messages" #chatMessages>
+  <nz-row
+    *ngIf="history.length == 0"
+    style="width: 100%; align-items: center; text-align: center"
+  >
+    <p>No mesagges yet!</p>
+  </nz-row>
+
+  <nz-col *ngIf="history.length > 0" nzXs="24" nzSm="18">
+    <div
+      class="message"
+      *ngFor="let message of history"
+      [ngStyle]="getMessageMargin(message.use_code)"
+    >
+      <p>{{ message.msg_text }}</p>
+      <div style="font-size: 9px; display: flex; justify-content: flex-end">
+        <p>{{ message.msg_datins }}</p>
+        <p>-</p>
+        <p>{{ message.use_name }}</p>
+      </div>
+    </div>
+  </nz-col>
+</nz-row>
+
+<nz-row>
+  <nz-col nzXs="24" nzSm="18">
+    <div class="chat-input">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          placeholder="Send a message"
+          [(ngModel)]="inputText"
+          (keyup.enter)="sendChat(inputText)"
+        />
+      </nz-input-group>
+    </div>
+  </nz-col>
+</nz-row>

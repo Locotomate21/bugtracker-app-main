@@ -1,0 +1,150 @@
+<div class="container">
+  <nz-form [formGroup]="projectForm">
+    <nz-row>
+      <nz-form-control nzHasFeedback>
+        <nz-col nzXs="24" nzSm="24">
+          <h5 nz-typography>Title*</h5>
+          <input
+            nz-input
+            formControlName="pro_title"
+            placeholder="Type title"
+          />
+          <div
+            class="validation-message"
+            *ngIf="
+              projectForm.get('pro_title')!.invalid &&
+              projectForm.get('pro_title')!.touched
+            "
+            nz-form-explain
+          >
+            Please enter a title
+          </div>
+        </nz-col>
+      </nz-form-control>
+
+      <nz-form-control nzHasFeedback>
+        <nz-col nzXs="24" nzSm="24">
+          <h5 nz-typography>Description*</h5>
+          <input
+            nz-input
+            formControlName="pro_descri"
+            placeholder="Description"
+          />
+          <div
+            class="validation-message"
+            *ngIf="
+              projectForm.get('pro_descri')!.invalid &&
+              projectForm.get('pro_descri')!.touched
+            "
+            nz-form-explain
+          >
+            Please enter a description
+          </div>
+        </nz-col>
+      </nz-form-control>
+    </nz-row>
+
+    <nz-row>
+      <nz-form-control>
+        <nz-col nzXs="24" nzSm="24">
+          <h5 nz-typography>Status*</h5>
+          <nz-select
+            nzAllowClear
+            nzPlaceHolder="Choose a status"
+            formControlName="pro_status"
+          >
+            <ng-container *ngFor="let data of projectStatuses">
+              <nz-option
+                [nzValue]="data.value"
+                [nzLabel]="data.text"
+              ></nz-option>
+            </ng-container>
+          </nz-select>
+          <div
+            class="validation-message"
+            *ngIf="
+              projectForm.get('pro_status')!.invalid &&
+              projectForm.get('pro_status')!.touched
+            "
+            nz-form-explain
+          >
+            Please enter the project status
+          </div>
+        </nz-col>
+      </nz-form-control>
+    </nz-row>
+
+    <nz-row>
+      <nz-form-control>
+        <nz-col nzXs="11" nzSm="11">
+          <h5 nz-typography>Start date*</h5>
+          <nz-date-picker formControlName="pro_datstart"></nz-date-picker>
+          <div
+            class="validation-message"
+            *ngIf="
+              projectForm.get('pro_datstart')!.invalid &&
+              projectForm.get('pro_datstart')!.touched
+            "
+            nz-form-explain
+          >
+            Please enter a valid start date
+          </div>
+        </nz-col>
+      </nz-form-control>
+      <nz-form-control>
+        <nz-col nzXs="11" nzSm="11">
+          <h5 nz-typography>End date*</h5>
+          <nz-date-picker formControlName="pro_datend"></nz-date-picker>
+          <div
+            class="validation-message"
+            *ngIf="
+              projectForm.get('pro_datend')!.invalid &&
+              projectForm.get('pro_datend')!.touched
+            "
+            nz-form-explain
+          >
+            Please enter a valid end date
+          </div>
+        </nz-col>
+      </nz-form-control>
+    </nz-row>
+
+    <nz-row>
+      <nz-form-control>
+        <nz-col nzXs="24" nzSm="24">
+          <h5 nz-typography>Team</h5>
+          <nz-select
+            nzAllowClear
+            nzMode="multiple"
+            nzPlaceHolder="Select the users group"
+            formControlName="pro_users"
+          >
+            <nz-option
+              *ngFor="let user of developerSelect"
+              [nzLabel]="user.use_name"
+              [nzValue]="user"
+            >
+              {{ user.use_name }}
+            </nz-option>
+          </nz-select>
+        </nz-col>
+      </nz-form-control>
+    </nz-row>
+
+    <nz-row>
+      <nz-col nzXs="24" nzSm="8">
+        <nz-form-item class="submit-button">
+          <button
+            nz-button
+            nzType="primary"
+            [disabled]="projectForm.invalid"
+            (click)="createProject(projectForm)"
+            nzBlock
+          >
+            Submit
+          </button>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+  </nz-form>
+</div>

@@ -1,0 +1,11 @@
+<div>
+  <ng-container *ngIf="userType === 'Admin'">
+    <app-admin-dashboard></app-admin-dashboard>
+  </ng-container>
+  <ng-container *ngIf="userType === 'Developer'">
+    <app-developer-dashboard></app-developer-dashboard>
+  </ng-container>
+  <ng-container *ngIf="userType === 'User'">
+    <app-user-dashboard></app-user-dashboard>
+  </ng-container>
+</div>

@@ -1,0 +1,52 @@
+<h3 nz-typography>{{ projectsTitle }}</h3>
+
+<div class="options-bar">
+  <nz-input-group
+    style="margin-bottom: 16px; width: 25vw; border-radius: 3px; outline: none"
+  >
+    <input
+      type="text"
+      nz-input
+      placeholder="Search and filter projects"
+      [(ngModel)]="searchText"
+      (ngModelChange)="filterData(searchText)"
+    />
+  </nz-input-group>
+
+  <button
+    nz-button
+    nzType="primary"
+    nzShape="circle"
+    (click)="createComponentModal()"
+  >
+    <span nz-icon nzType="plus"></span>
+  </button>
+</div>
+
+<div nz-col nzXs="24" nzSm="24" class="projects-container">
+  <div nz-row>
+    <div
+      class="project-card"
+      nz-col
+      nzXs="24"
+      nzSm="5"
+      *ngFor="let data of filteredData; let i = index"
+      style="padding: 50px 15px 35px"
+    >
+      <a
+        (click)="viewProjectDetail(data)"
+        [ngStyle]="{
+          'font-size': '16px',
+          color: 'black',
+          'font-weight': '300'
+        }"
+      >
+        {{ data.pro_title }}
+      </a>
+      <p>
+        by <b>{{ data.pro_owner }}</b>
+      </p>
+      <p [ngStyle]="{ 'font-size': '11px' }">{{ data.counts_string }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<h3 nz-typography>Users</h3>
+
+<div class="options-bar">
+  <nz-input-group
+    style="margin-bottom: 16px; width: 25vw; border-radius: 3px; outline: none"
+  >
+    <input
+      type="text"
+      nz-input
+      placeholder="Search and filter users"
+      [(ngModel)]="searchText"
+      (ngModelChange)="filterData(searchText)"
+    />
+  </nz-input-group>
+
+  <button
+    nz-button
+    nzType="primary"
+    nzShape="circle"
+    (click)="createComponentModal()"
+  >
+    <span nz-icon nzType="plus"></span>
+  </button>
+</div>
+
+<nz-table
+  #rowSelectionTable
+  nzShowSizeChanger
+  [nzData]="filteredData"
+  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+>
+  <thead>
+    <tr>
+      <th
+        [nzSelections]="listOfSelection"
+        [(nzChecked)]="checked"
+        [nzIndeterminate]="indeterminate"
+        (nzCheckedChange)="onAllChecked($event)"
+      ></th>
+      <th>Icon</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Type</th>
+      <th>Github</th>
+      <th>Type</th>
+      <th>Company</th>
+      <th>Register date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of rowSelectionTable.data">
+      <td
+        [nzChecked]="setOfCheckedId.has(data.use_code)"
+        (nzCheckedChange)="onItemChecked(data.use_code, $event)"
+      ></td>
+      <td>
+        <nz-avatar
+          [nzSrc]="
+            data?.use_pic ||
+            'https://firebasestorage.googleapis.com/v0/b/mantis-project-7c277.appspot.com/o/avataaars-example.png?alt=media&token=0e4ce4f4-10cd-4009-af54-71137fe4e676'
+          "
+          [nzShape]="'circle'"
+        ></nz-avatar>
+      </td>
+      <td>
+        <a (click)="viewUserDetail(data)">{{ data.use_name }}</a>
+      </td>
+      <td>{{ data.use_email }}</td>
+      <td>{{ data.use_type }}</td>
+      <td>{{ data.use_github }}</td>
+      <td>{{ data.use_type }}</td>
+      <td>{{ data.cop_name }}</td>
+      <td>{{ data.use_datfor }}</td>
+      <td>
+        <button
+          nz-button
+          nzType="default"
+          nzDanger
+          (click)="deleteUser(data.use_code)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
