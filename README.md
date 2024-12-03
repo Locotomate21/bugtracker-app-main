@@ -42,4 +42,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any inquiries or questions, please contact [Esteban Toro](estebantoro.greenman@gmail.com).
+For any inquiries or questions, please contact [Carlos Losada](tomate1tigre@gmail.com).
